@@ -2,6 +2,8 @@
 
 Enables communication between pod groups
 
+`kubectl create service nodeport ingress --tcp=80:80`
+
 ### Types 
 
 1. NodePort: Listens on a port in a node and forwards the request

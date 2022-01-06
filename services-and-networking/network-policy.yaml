@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: db-policy
+spec:
+  podSelector:
+    matchLabels:
+      role: db
+  policyTypes: # declare the policytypes first
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          name: api-server
+      namespaceSelector:
+        matchLabels:
+          name: production ## label of the namespace
+    - ipBlock: # manange services outside of kubectl environment
+        cidr: 192.168.1.10/32
+    ports:
+    - protocol: TCP
+      port: 3306
+  egress:
+  - to:
+    - ipBlock:
+        cidr: 192.168.3.10/32
+    ports:
+    - protocol: TCP
+      port: 80
