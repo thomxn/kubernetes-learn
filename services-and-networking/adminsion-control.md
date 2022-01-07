@@ -7,3 +7,6 @@ to find which admission controller is enabled
 Since the kube-apiserver is running as pod you can check the process to see enabled and disabled plugins.
 
 `ps -ef | grep kube-apiserver | grep admission-plugins`
+
+1. Mutating Admission Controller
+2. Validating Admission Controller
