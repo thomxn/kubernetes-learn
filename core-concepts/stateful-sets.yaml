@@ -1,0 +1,21 @@
+# Stateful sets deploy pods in a sequential manner
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  replicas: 3
+  selector:
+    matchlabel:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        name: mysql
+    spec:
+      containers:
+      - image: mysql
+        name: mysql
+  serviceName: mysql-headless # IMPORTANT!

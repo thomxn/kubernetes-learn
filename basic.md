@@ -4,10 +4,13 @@ kubectl get pods --all-namespaces
 
 You can also scale a deployment using the kubectl scale command.
 
+kubectl scale deployment mysql --replicas=5
+
 kubectl expose pod redis --port=6379 --name redis-service
 
 kubectl create deployment webapp --image=kodekloud/webapp-color --replicas=3
 
+kubectl explain resourcename
 ### Get API doc
 
 `kubectl explain job --recursive | less`
@@ -60,4 +63,13 @@ They are used to capture extra information such as build number, contact info et
 ```
 annotations:
     buildversion: 1.6.3
+```
+
+### Convert API versions
+
+`kubectl convert -f nginx.yaml --output-version apps/v1`
+
+```
+kubectl proxy 8001&
+curl localhost:8001/apis/authorization.k8s.io
 ```

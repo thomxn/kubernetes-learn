@@ -1,0 +1,27 @@
+# Headless service does not load balance. It just assign DNS entries to pods
+# Set clusterIP to none for defining a headless service
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-h
+spec:
+  ports:
+  - port: 3306
+  selector:
+    app: mysql
+  clusterIP: None
+
+# Corresponding pod definition
+
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: myapp-pod
+#   labels:
+#     app: mysql
+# spec:
+#   containers:
+#     - name: mysql
+#       image: mysql
+#   subdomain: mysql-h
+#   hostname: mysql-pod
